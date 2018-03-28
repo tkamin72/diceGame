@@ -324,6 +324,7 @@ int main(int argc, char** argv)
                     if(getch()==32)
                     {
                         system("cls");
+                        break;
                     }
                     else
                     {

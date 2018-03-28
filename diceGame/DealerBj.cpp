@@ -9,6 +9,7 @@ DealerBj::DealerBj(){ }
 
 //class functions//
 void DealerBj::setCardValues(Cards f){
+	srand(time(0));
 	card = f.getCardValue();
 	holeCard = f.getCardValue();
 	}

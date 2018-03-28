@@ -22,6 +22,9 @@ int main(int argc, char** argv)
 	Cards Cards;
 	int card3, card3D;
 	string type3, type3D;
+	char ans='y';
+	bool third=false;
+	bool thirdDealer=false;
 	/////////////////////////////////////
 	int choice,totalDealer, totalPlayer;
 	float betAmount, winnings=0;
@@ -44,8 +47,11 @@ int main(int argc, char** argv)
 	{
 		case 1:
 		{
-			if(age>=21)
-			{
+			if(age>=21){
+			
+			
+			while(ans=='y'){
+				ans='n';
 				cout<<"*********************************************************\n";
 				cout<<"******************--Welcome to Black Jack--******************\n";
 				cout<<"*********************************************************\n";
@@ -128,20 +134,21 @@ int main(int argc, char** argv)
 					totalDealer = Dealer.getCard() + Dealer.getHoleCard();
 					totalPlayer = BlackJackPlayer.getCardValue1() + BlackJackPlayer.getCardValue2();
 					//Incase one of the players have a total that is lt 21// makes a third card//
-					if(totalPlayer<21){
+				/*	if(totalPlayer<21){
 						cout<<"\n\n"<<name1<<"'s Cards";	
 						cout<<"\n"<<setw(10)<<BlackJackPlayer.getCardValue1()<<" "<<BlackJackPlayer.getCardType1();
 						cout<<"\n"<<setw(10)<<BlackJackPlayer.getCardValue2()<<" "<<BlackJackPlayer.getCardType2();
 						cout<<"\nPress Z to draw another Card or press any other key to continue";
-						getch();
-						if(getchar()==122 || getchar()==90){
+						cin.ignore(1);
+						if(getch()==122 || getch()==90){
 							card3 = Cards.getCardValue();
 							type3 = Cards.getCardType();
 							cout<<"\nYou Drew a "<<card3<<" "<<type3;
 							totalPlayer += card3;
+							//its exiting here//
 						}
-					}
-					else if (totalDealer<21){
+					}*/
+				/*	else if (totalDealer<21){
 						
 						cout<<"\n\nDealer's Cards";	
 						cout<<"\n"<<setw(10)<<Dealer.getCard()<<" "<<Dealer.getType();
@@ -150,7 +157,7 @@ int main(int argc, char** argv)
 						card3D = Cards.getCardValue();
 						type3D = Cards.getCardType();
 						totalDealer += card3D;
-					}
+					}*/
 					
 					//modded from here and below//
 					
@@ -171,10 +178,117 @@ int main(int argc, char** argv)
 						cout<<"--------------------------------";
 						cout<<"$ "<<BlackJackPlayer.getWinnings();
 					}
+					else if (totalDealer<21 || totalPlayer <21){
+						if(totalPlayer<21){
+						cout<<"\n\n"<<name1<<"'s Cards";	
+						cout<<"\n"<<setw(10)<<BlackJackPlayer.getCardValue1()<<" "<<BlackJackPlayer.getCardType1();
+						cout<<"\n"<<setw(10)<<BlackJackPlayer.getCardValue2()<<" "<<BlackJackPlayer.getCardType2();
+						cout<<"\nPress Z to draw another Card or press any other key to continue";
+						cin.ignore(1);//cLEARING BUFFER
+						if(getch()==122 || getch()==90){
+							third = true;
+							card3 = Cards.getCardValue();
+							type3 = Cards.getCardType();
+							cout<<"\nYou Drew a "<<card3<<" "<<type3;
+							totalPlayer += card3;
+						
+						}//end of 2nd if
+						
+						
+					}//end of if
+					if (totalDealer<21){
+						thirdDealer=true;
+						cout<<"\n\nDealer's Cards";	
+						cout<<"\n"<<setw(10)<<Dealer.getCard()<<" "<<Dealer.getType();
+						cout<<"\n"<<setw(10)<<Dealer.getHoleCard()<<" "<<Dealer.getHoleType();
+						cout<<"\n"<<setw(10)<<"Card drawn by dealer :"<<card3D<<" "<<type3D;
+						card3D = Cards.getCardValue();
+						type3D = Cards.getCardType();
+						totalDealer += card3D;
+						
+						if(totalDealer==21 ){
+							if(thirdDealer==true){
+								
+								cout<<"\n\nDealer's Cards";	
+								cout<<"\n"<<setw(10)<<Dealer.getCard()<<" "<<Dealer.getType();
+								cout<<"\n"<<setw(10)<<Dealer.getHoleCard()<<" "<<Dealer.getHoleType();
+								cout<<"\n"<<setw(10)<<card3D<<" "<<type3D;
+							}
+							
+							else{
+									cout<<"\n\nDealer's Cards";	
+									cout<<"\n"<<setw(10)<<Dealer.getCard()<<" "<<Dealer.getType();
+									cout<<"\n"<<setw(10)<<Dealer.getHoleCard()<<" "<<Dealer.getHoleType();
+								
+							}
+								
+							if (third==true){
+							cout<<"\n\n"<<name1<<"'s Cards";	
+							cout<<"\n"<<setw(10)<<BlackJackPlayer.getCardValue1()<<" "<<BlackJackPlayer.getCardType1();
+							cout<<"\n"<<setw(10)<<BlackJackPlayer.getCardValue2()<<" "<<BlackJackPlayer.getCardType2();
+							cout<<"\n"<<setw(10)<<card3<<" "<<type3;	
+							}
+							else{
+								cout<<"\n\n"<<name1<<"'s Cards";	
+								cout<<"\n"<<setw(10)<<BlackJackPlayer.getCardValue1()<<" "<<BlackJackPlayer.getCardType1();
+								cout<<"\n"<<setw(10)<<BlackJackPlayer.getCardValue2()<<" "<<BlackJackPlayer.getCardType2();
+							}
+							
+						
+							cout<<"\n<--Dealer Hit Black Jack-->";
+							BlackJackPlayer.setWinnings(BlackJackPlayer.getBetAmount() - (BlackJackPlayer.getBetAmount() /3));	//lose 1/3 of bet amount if lose//
+							cout<<"\nLost Amount : "<<betAmount<<" - "<<(BlackJackPlayer.getBetAmount()/3);
+							cout<<"--------------------------------";
+							cout<<"\n$ "<<BlackJackPlayer.getWinnings();	
+							}
+							else if (totalPlayer==21){
+								if(thirdDealer==true){
+								
+								cout<<"\n\nDealer's Cards";	
+								cout<<"\n"<<setw(10)<<Dealer.getCard()<<" "<<Dealer.getType();
+								cout<<"\n"<<setw(10)<<Dealer.getHoleCard()<<" "<<Dealer.getHoleType();
+								cout<<"\n"<<setw(10)<<card3D<<" "<<type3D;
+							}
+							
+							else{
+									cout<<"\n\nDealer's Cards";	
+									cout<<"\n"<<setw(10)<<Dealer.getCard()<<" "<<Dealer.getType();
+									cout<<"\n"<<setw(10)<<Dealer.getHoleCard()<<" "<<Dealer.getHoleType();
+								
+							}
+								
+							if (third==true){
+							cout<<"\n\n"<<name1<<"'s Cards";	
+							cout<<"\n"<<setw(10)<<BlackJackPlayer.getCardValue1()<<" "<<BlackJackPlayer.getCardType1();
+							cout<<"\n"<<setw(10)<<BlackJackPlayer.getCardValue2()<<" "<<BlackJackPlayer.getCardType2();
+							cout<<"\n"<<setw(10)<<card3<<" "<<type3;	
+							}
+							else{
+								cout<<"\n\n"<<name1<<"'s Cards";	
+								cout<<"\n"<<setw(10)<<BlackJackPlayer.getCardValue1()<<" "<<BlackJackPlayer.getCardType1();
+								cout<<"\n"<<setw(10)<<BlackJackPlayer.getCardValue2()<<" "<<BlackJackPlayer.getCardType2();
+							}
+							cout<<"\n!!!--YOU HIT BLACK JACK--!!!";
+							BlackJackPlayer.setWinnings(  BlackJackPlayer.getBetAmount() * 1.5);//pays out (1.5 * the betamount) if player wins//
+							cout<<"\nPayout : "<<betAmount<<" x 1.5";
+							cout<<"\n--------------------------------";
+							cout<<"\n"<<BlackJackPlayer.getWinnings();
+								
+								
+								
+							}//before this
+					}
+					
+						
+					}//end of else if
+					cout<<"wanna go again?";
+					cin>>ans;
+				
+				}
 				
 					
-				//Black jack code goes here//
-			}
+			
+			}//case 1
 			else
 			{
 				cout<<"I'm sorry you didn't meet the minimum age requirements of 21 years old!";
@@ -182,103 +296,102 @@ int main(int argc, char** argv)
 			break;
 		}
 		case 2:
-		{
-			if(age>=21)
-			{
-				system("cls");
-				cout<<"\n\n\n\n";
-				cout<<setw(90)<<"*********************************************************\n";
-				cout<<setw(90)<<"******************--Welcome to Craps!--******************\n";
-				cout<<setw(90)<<"*********************************************************\n";
-				cout<<setw(90)<<"************************--Rules--************************\n";
-				cout<<setw(90)<<"****--Each round has two phases: Come Out and Point--****\n";
-				cout<<setw(90)<<"*****--In the come out phase if you roll a 7 or 11--*****\n";
-				cout<<setw(90)<<"**************--you are a natural winner!--**************\n";
-				cout<<setw(90)<<"**********--if you roll a 2, 3 or 12 you lose--**********\n";
-				cout<<setw(90)<<"*********************************************************\n";
-				cout<<setw(90)<<"********--In the point phase if roll a match--***********\n";
-				cout<<setw(90)<<"***********************--You Win!--**********************\n";
-				cout<<setw(90)<<"***************--if you roll a 7 you lose--**************\n";
-				cout<<setw(90)<<"************--You will continue to roll until--**********\n";
-				cout<<setw(90)<<"*****************--you match or roll a 7--***************\n";
-				cout<<setw(90)<<"*********************************************************\n";
-				cout<<setw(90)<<"********************--Enjoy the Game!--******************\n";
-				cout<<setw(90)<<"*********************************************************\n";
-				cout<<setw(82)<<"Press double tap the space bar to continue!";
-				do
-				{
-					if(getch()==32)
-					{
-						system("cls");
-					}
-					else
-					{
-						cout<<"You didn't press the space bar!";
-					}
-				}while(getch()!=32);
-				cin.ignore();
-				do
-				{
-					Craps game(name1, age);
-					cout<<"\nCome Out Phase: Please press the space bar to roll\n";
-					if(getch()==32)	
-					{
-						
-						v = game.roll();
-						cout<<"You rolled "<<v;
-						if(v==7 || v==11)
-						{
-							cout<<"\nYou are a natural winner!\n";
-						}
-						else if(v==2 || v==3 || v==12)
-						{
-							cout<<"\nYou Crapped Out!\n";
-						}
-						else
-						{
-							int x=0;
-							do
-							{
-								cout<<"\nPoint Phase: Please press the space bar to roll again\n";
-								x = game.roll();
-								if(getch()==32)
-								{
-									if(x==v)
-									{
-										cout<<"\nYou rolled a match and are a winner!\n";
-									}
-									else if(x==7)
-									{
-										cout<<"\nYou rolled a 7 and lost!\n";
-									}
-									else
-									{
-										cout<<"You rolled "<<x<<" match is "<<v;
-									}
-								}
-								else
-								{
-									
-									cout<<"\nYou did not strike the space bar!";
-								}
-							}while(x!=v && x!=7);
-						}	
-					}
-					else
-					{
-						cout<<"\nYou did not strike space bar!";
-					}
-					cout<<"\n\nWould you like to play again Y or N? ";
-					cin>>again;
-				}while(again=='y' || again=='Y');
-				cout<<"\n\nThank You for playing!\n";
-			}
-			else
-			{
-				cout<<"I'm sorry you didn't meet the minimum age requirements of 21 years old!";
-			}
-			break;
-		}
+        {
+            if(age>=21)
+            {
+                system("cls");
+                cout<<"\n\n\n\n";
+                cout<<setw(90)<<"*********************************************************\n";
+                cout<<setw(90)<<"******************--Welcome to Craps!--******************\n";
+                cout<<setw(90)<<"*********************************************************\n";
+                cout<<setw(90)<<"************************--Rules--************************\n";
+                cout<<setw(90)<<"****--Each round has two phases: Come Out and Point--****\n";
+                cout<<setw(90)<<"*****--In the come out phase if you roll a 7 or 11--*****\n";
+                cout<<setw(90)<<"**************--you are a natural winner!--**************\n";
+                cout<<setw(90)<<"**********--if you roll a 2, 3 or 12 you lose--**********\n";
+                cout<<setw(90)<<"*********************************************************\n";
+                cout<<setw(90)<<"********--In the point phase if roll a match--***********\n";
+                cout<<setw(90)<<"***********************--You Win!--**********************\n";
+                cout<<setw(90)<<"***************--if you roll a 7 you lose--**************\n";
+                cout<<setw(90)<<"************--You will continue to roll until--**********\n";
+                cout<<setw(90)<<"*****************--you match or roll a 7--***************\n";
+                cout<<setw(90)<<"*********************************************************\n";
+                cout<<setw(90)<<"********************--Enjoy the Game!--******************\n";
+                cout<<setw(90)<<"*********************************************************\n";
+                cout<<setw(82)<<"Press double tap the space bar to continue!";
+                do
+                {
+                    if(getch()==32)
+                    {
+                        system("cls");
+                    }
+                    else
+                    {
+                        cout<<"You didn't press the space bar!";
+                    }
+                }while(getch()!=32);
+                do
+                {
+                    Craps game(name1, age);
+                    cout<<"\nCome Out Phase: Please press the space bar to roll\n";
+                    if(getch()==32) 
+                    {
+                        
+                        v = game.roll();
+                        cout<<"You rolled "<<v;
+                        if(v==7 || v==11)
+                        {
+                            cout<<"\nYou are a natural winner!\n";
+                        }
+                        else if(v==2 || v==3 || v==12)
+                        {
+                            cout<<"\nYou Crapped Out!\n";
+                        }
+                        else
+                        {
+                            int x=0;
+                            do
+                            {
+                                cout<<"\nPoint Phase: Please press the space bar to roll again\n";
+                                x = game.roll();
+                                if(getch()==32)
+                                {
+                                    if(x==v)
+                                    {
+                                        cout<<"\nYou rolled a match and are a winner!\n";
+                                    }
+                                    else if(x==7)
+                                    {
+                                        cout<<"\nYou rolled a 7 and lost!\n";
+                                    }
+                                    else
+                                    {
+                                        cout<<"You rolled "<<x<<" match is "<<v;
+                                    }
+                                }
+                                else
+                                {
+                                    
+                                    cout<<"\nYou did not strike the space bar!";
+                                }
+                            }while(x!=v && x!=7);
+                        }   
+                    }
+                    else
+                    {
+                        cout<<"\nYou did not strike space bar!";
+                    }
+                    cout<<"\n\nWould you like to play again Y or N? ";
+                    cin>>again;
+                }while(again=='y' || again=='Y');
+                cout<<"\n\nThank You for playing!\n";
+            }
+            else
+            {
+                cout<<"I'm sorry you didn't meet the minimum age requirements of 21 years old!";
+            }
+            break;
+        }
 		case 3:
 		{
 			int knockOut1;

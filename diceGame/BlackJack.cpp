@@ -6,7 +6,7 @@
 
 // Black Jack Constructor constructor//
 BlackJack::BlackJack(string nm, int age, float win, float bet):p1(nm,age,win,bet),cards(),Dealer(){
-	
+	srand(time(0));
 	p1.setCardValues(cards); //setting player one card values// 
 	p1.setCardTypes(cards) ; // setting card types// 
 	

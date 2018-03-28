@@ -216,6 +216,7 @@ int main(int argc, char** argv)
 						cout<<"You didn't press the space bar!";
 					}
 				}while(getch()!=32);
+				cin.ignore();
 				do
 				{
 					Craps game(name1, age);

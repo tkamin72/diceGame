@@ -185,14 +185,42 @@ int main(int argc, char** argv)
 		{
 			if(age>=21)
 			{
-				cout<<"*********************************************************\n";
-				cout<<"********************Welcome to Craps!********************\n";
-				cout<<"*********************************************************\n";
+				system("cls");
+				cout<<"\n\n\n\n";
+				cout<<setw(90)<<"*********************************************************\n";
+				cout<<setw(90)<<"******************--Welcome to Craps!--******************\n";
+				cout<<setw(90)<<"*********************************************************\n";
+				cout<<setw(90)<<"************************--Rules--************************\n";
+				cout<<setw(90)<<"****--Each round has two phases: Come Out and Point--****\n";
+				cout<<setw(90)<<"*****--In the come out phase if you roll a 7 or 11--*****\n";
+				cout<<setw(90)<<"**************--you are a natural winner!--**************\n";
+				cout<<setw(90)<<"**********--if you roll a 2, 3 or 12 you lose--**********\n";
+				cout<<setw(90)<<"*********************************************************\n";
+				cout<<setw(90)<<"********--In the point phase if roll a match--***********\n";
+				cout<<setw(90)<<"***********************--You Win!--**********************\n";
+				cout<<setw(90)<<"***************--if you roll a 7 you lose--**************\n";
+				cout<<setw(90)<<"************--You will continue to roll until--**********\n";
+				cout<<setw(90)<<"*****************--you match or roll a 7--***************\n";
+				cout<<setw(90)<<"*********************************************************\n";
+				cout<<setw(90)<<"********************--Enjoy the Game!--******************\n";
+				cout<<setw(90)<<"*********************************************************\n";
+				cout<<setw(82)<<"Press double tap the space bar to continue!";
+				do
+				{
+					if(getch()==32)
+					{
+						system("cls");
+					}
+					else
+					{
+						cout<<"You didn't press the space bar!";
+					}
+				}while(getch()!=32);
 				do
 				{
 					Craps game(name1, age);
-					cout<<"\nCome Out: Please press the Z key to roll\n";
-					if(getch()==122 || getch()==90)	
+					cout<<"\nCome Out Phase: Please press the space bar to roll\n";
+					if(getch()==32)	
 					{
 						
 						v = game.roll();
@@ -210,9 +238,9 @@ int main(int argc, char** argv)
 							int x=0;
 							do
 							{
-								cout<<"\nPoint: Please press z to roll again\n";
+								cout<<"\nPoint Phase: Please press the space bar to roll again\n";
 								x = game.roll();
-								if(getch()==122 || getch()==90)
+								if(getch()==32)
 								{
 									if(x==v)
 									{
@@ -222,23 +250,27 @@ int main(int argc, char** argv)
 									{
 										cout<<"\nYou rolled a 7 and lost!\n";
 									}
+									else
+									{
+										cout<<"You rolled "<<x<<" match is "<<v;
+									}
 								}
 								else
 								{
 									
-									cout<<"\nYou did not strike the Z key!";
+									cout<<"\nYou did not strike the space bar!";
 								}
 							}while(x!=v && x!=7);
 						}	
 					}
 					else
 					{
-						cout<<"You did not strike the Z key!";
+						cout<<"\nYou did not strike space bar!";
 					}
-					cout<<"Would you like to play again Y or N? ";
+					cout<<"\n\nWould you like to play again Y or N? ";
 					cin>>again;
 				}while(again=='y' || again=='Y');
-				cout<<"Thank You for playing!\n";
+				cout<<"\n\nThank You for playing!\n";
 			}
 			else
 			{

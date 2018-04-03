@@ -86,7 +86,10 @@ int main(int argc, char** argv)
 				cout<<setw(90)<<"*********************************************************\n";
 				cout<<setw(90)<<"************************GOOD LUCK************************\n";
 				cout<<setw(90)<<"*********************************************************\n";
-				cout<<setw(75)<<"Enter your bet amount : $ ";
+				cout<<setw(48)<<"";
+          		system("pause");
+          		system("cls");
+				cout<<setw(25)<<"Enter your bet amount: $";
 				cin>>betAmount;
 				
 				BlackJack blackJack(name1,age,winnings,betAmount); //blackjack constructor//
@@ -349,21 +352,13 @@ int main(int argc, char** argv)
                 cout<<setw(90)<<"*********************************************************\n";
 				cout<<setw(90)<<"************************GOOD LUCK************************\n";
 				cout<<setw(90)<<"*********************************************************\n";
-                cout<<setw(77)<<"Press the space bar to continue!";
+				cout<<setw(48)<<"";
+          		system("pause");
+          		system("cls");
                 do
                 {
-                    if(getch()==32)
-                    {
-                        system("cls");
-                        break;
-                    }
-                    else
-                    {
-                        cout<<"You didn't press the space bar!";
-                    }
-                }while(getch()!=32);
-                do
-                {
+                	cout<<setw(25)<<"Enter your bet amount: $";
+					cin>>betAmount;
                     Craps game(name1, age);
                     cout<<"\nCome Out Phase: Please press the space bar to roll\n";
                     if(getch()==32) 
@@ -443,19 +438,9 @@ int main(int argc, char** argv)
 			cout<<setw(90)<<"*********************************************************\n";
 			cout<<setw(90)<<"************************GOOD LUCK************************\n";
 			cout<<setw(90)<<"*********************************************************\n";
-			cout<<setw(77)<<"Press the space bar to continue!";
-            	do
-                {
-                    if(getch()==32)
-                    {
-                        system("cls");
-                        break;
-                    }
-                    else
-                    {
-                        cout<<"You didn't press the space bar!";
-                    }
-                }while(getch()!=32);
+			cout<<setw(48)<<"";
+          	system("pause");
+          	system("cls");
 			cout<<"Player 1:\n";
 			cout<<"Please enter your knockout number (6, 7, 8 or 9): ";
 			cin>>knockOut1;

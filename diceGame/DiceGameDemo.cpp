@@ -4,6 +4,7 @@
 #include <iostream>
 #include <conio.h>
 #include <cstdlib>
+#include <Windows.h>
 #include "Dice.h"
 #include "Player.h"
 #include "KnockOutGame.h"
@@ -13,7 +14,16 @@
 
 using namespace std;
 /* run this program using the console pauser or add your own getch, system("pause") or input loop */
-
+void seeDice();
+void pauseDice(){
+int c=0;
+string word=". . . . . . . .";
+while(word[c]!='\0'){
+    	cout<<word[c];
+    	Sleep(250);
+    	c++;
+	}
+}
 int main(int argc, char** argv)
 {
 	//Objects used for BlackJack game//
@@ -365,6 +375,7 @@ int main(int argc, char** argv)
                     {
                         
                         v = game.roll();
+                        seeDice();
                         cout<<"You rolled "<<v;
                         if(v==7 || v==11)
                         {
@@ -383,6 +394,7 @@ int main(int argc, char** argv)
                                 x = game.roll();
                                 if(getch()==32)
                                 {
+                                	seeDice();
                                     if(x==v)
                                     {
                                         cout<<"\nYou rolled a match and are a winner!\n";
@@ -468,6 +480,7 @@ int main(int argc, char** argv)
 			{
 		
 		 		v = game.roll();
+		 		seeDice();
 				cout<<"\n|Your roll was : "<<v<<" | KnockOut Number : "<<knockOut1;
 		
 				if(v==knockOut1)
@@ -481,7 +494,108 @@ int main(int argc, char** argv)
 			}
 			cout<<"|!!!YOU HIT THE KNOCKOUT NUMBER!!!|";
 		}
-	
+	}
 	return 0;
 }
+void seeDice()
+{
+	string posVert[5]={"\n", "\n\n\n\n\n", "\n\n\n\n\n\n\n\n\n\n", "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n","\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"};
+	
+    int n, y, z;
+    cout<<"\n\n"<<setw(75)<<"Dice Loading Please Wait! ";
+    pauseDice();
+	Sleep(500);
+	for (int x=0; x<10; ++x)
+	{
+		z = rand() % 4 + 1;
+        n = rand() % 6 + 1;
+        y = rand() % 100 + 1;
+        switch (n)
+        {
+         case 1:
+ 			cout<<posVert[z];
+        	cout<<setw(y+10)<< " -----" <<"\n";
+        	cout<<setw(y+10)<< "|     |" <<"\n";
+        	cout<<setw(y+10)<< "|  O  |" <<"\n";
+        	cout<<setw(y+10)<< "|     |" <<"\n";
+        	cout<<setw(y+10)<< " -----" <<"\n";
+        	Sleep(100);
+        	system("cls");
+        	Sleep(100);
+			//cout<<"----> random number is: "<<n;
+			//cout<<"\nHori posistion: "<<y;        	
+         	//y+=20;
+        	break;
+        case 2:
+        	cout<<posVert[z];
+        	cout<<setw(y+10)<< " -----" <<"\n";
+       	 	cout<<setw(y+10)<< "|    O|" <<"\n";
+        	cout<<setw(y+10)<< "|     |" <<"\n";
+        	cout<<setw(y+10)<< "|O    |" <<"\n";
+        	cout<<setw(y+10)<< " -----" <<"\n";
+        	Sleep(100);
+        	system("cls");
+        	Sleep(100);
+        	//cout<<"----> random number is: "<<n;
+			//cout<<"\nHori posistion: "<<y; 
+        	//y+=20;
+            break;
+         case 3:
+        	cout<<posVert[z];
+        	cout<<setw(y+10)<< " -----" <<"\n";
+        	cout<<setw(y+10)<< "|    O|" <<"\n";
+        	cout<<setw(y+10)<< "|  O  |" <<"\n";
+        	cout<<setw(y+10)<< "|O    |" <<"\n";
+        	cout<<setw(y+10)<< " -----" <<"\n";
+        	Sleep(100);
+        	system("cls");
+        	Sleep(100);
+        	//cout<<"----> random number is: "<<n;
+			//cout<<"\nHori posistion: "<<y; 
+            //y+=20;
+            break;
+         case 4:
+         	cout<<posVert[z];
+        	cout<<setw(y+10)<< " -----" <<"\n";
+        	cout<<setw(y+10)<< "|O   O|" <<"\n";
+        	cout<<setw(y+10)<< "|     |" <<"\n";
+        	cout<<setw(y+10)<< "|O   O|" <<"\n";
+        	cout<<setw(y+10)<<  " -----" <<"\n";
+        	Sleep(100);
+        	system("cls");
+        	Sleep(100);
+        	//cout<<"----> random number is: "<<n; 
+        	//cout<<"\nHori posistion: "<<y;
+            //y+=20;
+            break;
+         case 5:
+        	cout<<posVert[z];
+        	cout<<setw(y+10)<< " -----" <<"\n";
+        	cout<<setw(y+10)<< "|O   O|" <<"\n";
+       		cout<<setw(y+10)<< "|  O  |" <<"\n";
+        	cout<<setw(y+10)<< "|O   O|" <<"\n";
+        	cout<<setw(y+10)<< " -----" <<"\n";
+        	Sleep(100);
+        	system("cls");
+        	Sleep(100);
+        	//cout<<"----> random number is: "<<n;
+			//cout<<"\nHori posistion: "<<y; 
+            //y+=20;
+            break;
+         case 6:
+         	cout<<posVert[z];
+        	cout<<setw(y+10)<< " -----" <<"\n";
+        	cout<<setw(y+10)<< "|O   O|" <<"\n";
+        	cout<<setw(y+10)<< "|O   O|" <<"\n";
+        	cout<<setw(y+10)<< "|O   O|" <<"\n";
+        	cout<<setw(y+10)<<  " -----" <<"\n";
+        	Sleep(100);
+        	system("cls");
+        	Sleep(100);
+        	//cout<<"----> random number is: "<<n; 
+        	//cout<<"\nHori posistion: "<<y;
+            //y+=20;
+            break;
+    	}
+	}
 }

@@ -245,9 +245,9 @@ int main(int argc, char** argv)
 						cout<<"\n\nDealer's Cards";	
 						cout<<"\n"<<setw(10)<<Dealer.getCard()<<" "<<Dealer.getType();
 						cout<<"\n"<<setw(10)<<Dealer.getHoleCard()<<" "<<Dealer.getHoleType();
-						cout<<"\n"<<setw(10)<<"Card drawn by dealer :"<<card3D<<" "<<type3D;
 						card3D = Cards.getCardValue();
 						type3D = Cards.getCardType();
+						cout<<"\n"<<setw(10)<<"Card drawn by dealer :"<<card3D<<" "<<type3D;
 						totalDealer += card3D;
 						
 						if(totalDealer==21 ){
@@ -316,7 +316,7 @@ int main(int argc, char** argv)
 							BlackJackPlayer.setWinnings(  BlackJackPlayer.getBetAmount() * 1.5);//pays out (1.5 * the betamount) if player wins//
 							cout<<"\nPayout : "<<betAmount<<" x 1.5";
 							cout<<"\n--------------------------------";
-							cout<<"\n"<<BlackJackPlayer.getWinnings();
+							cout<<"\nYour Winnings : "<<BlackJackPlayer.getWinnings();
 								
 								
 								
@@ -325,7 +325,7 @@ int main(int argc, char** argv)
 					
 						
 					}//end of else if
-					cout<<"wanna go again?";
+					cout<<"\nwanna go again?";
 					cin>>ans;
 				
 				}
@@ -456,24 +456,7 @@ int main(int argc, char** argv)
 			cout<<"Player 1:\n";
 			cout<<"Please enter your knockout number (6, 7, 8 or 9): ";
 			cin>>knockOut1;
-			
-			//	cout<<"Player 2";
-			//	cout<<"Please enter your knockout number (6, 7, 8 or 9)";
-			//	cin>>knockout2;
-			//	cout<<"Please enter your name: ";
-			//	cin>>name2;
-			//Player player1(name);
-			//Dice d; // dice// 
-			//d.roll(); // roll function for dice obj//
-			//cout<<d.getValue();
 			KnockOutGame game(knockOut1, name1);
-			//	cout<<"Please press the Z key to roll ";
-			//	cin>>v;
-			//	if(v==132 || v==172)
-			//	{
-			//		game.roll();
-			//	}
-			//cout<<knockOut1;//test//
 			cout<<"\nPlease press the Z key to roll\n";
 	
 			while(getch()==122 || getch()==90)

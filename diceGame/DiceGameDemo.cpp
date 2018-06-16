@@ -204,7 +204,7 @@ int main(int argc, char** argv)
 					}*/
 					
 					//modded from here and below//
-					
+					//if player wins//
 					if ((totalPlayer == 21 && totalDealer >21) || (totalPlayer==21 && totalDealer <21)){
 						//float c = (BlackJackPlayer.getBetAmount());
 						cout<<"!!!--YOU HIT BLACK JACK--!!!";
@@ -213,7 +213,7 @@ int main(int argc, char** argv)
 						cout<<"--------------------------------";
 						cout<<"$ "<<BlackJackPlayer.getWinnings();
 					}
-						//if player wins//
+						//if dealer wins//
 					else if((totalDealer == 21 && totalPlayer >21) || (totalDealer==21 && totalPlayer <21)){
 						
 						cout<<"<--Dealer Hit Black Jack-->";

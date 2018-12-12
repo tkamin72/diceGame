@@ -1,0 +1,78 @@
+<?php
+/**
+ * Trevor Kamin
+ * CIS 222 Project 1
+ *
+ * This website was used as my PHP w/ MYSQL course with professor Banks. It will
+ *be used in a production for Fancie That Candles. This is a complete online
+ * store, and will be fully functional when completed.
+ *
+ * PHP version 5.4.45
+ *
+ * @package    Fancie That Candles
+ * @author     Trevor Kamin
+ * @copyright  2018 Fancie That Candles
+ * @version    12/09/2018
+ * @link       https://cislinux.hfcc.edu/~tkamin/project2/index.php
+ */
+?>
+
+<!-- Search page results using regex!!!! your favorite! lol -->
+<h1> Search Results </h1>
+ <style> td,th {border:1px solid black;} 
+ table {text-align:center;
+ position:relative;
+ left:5em;
+	border:1px solid black;} 
+	</style>
+ <div>
+ <table>
+ <thead>
+<?php
+/*
+require ('../../creds.php');
+require ('../../creds2.php');
+*/
+
+
+	        if(preg_match("/[A-Z  | a-z]+/", $_POST['search_prod'])){ 
+	          $name=$_POST['search_prod'];
+                /*
+                $dsn = "mysql:host=".DB_HOST.";dbname=".DB_NAME.";charset=$charset";
+                $opt =
+                    [
+                        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+                        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+                        PDO::ATTR_EMULATE_PREPARES => false,
+                    ];
+
+
+                $pdo = new PDO($dsn, DB_USER, DB_PASS, $opt) or die ("unable to select database");
+                */
+					  $query1="SELECT * FROM products where prod_name LIKE '%$name%'";
+					  //$result=mysql_query($query1);
+								//var_dump($query1);
+								  echo "
+                                <th>Images</th>
+                                 <th> Product Name </th>
+                                 <th> Product Price </th>
+                                   <th> Product Description </th>
+								   </thead><tbody>";
+
+								  while ($row = $stmt->fetch())
+{
+	echo '<tr>';
+	echo "<td>"  .($row['links'])."</td>";
+	echo "<td>"  .htmlspecialchars($row['prod_name']) ."</td>";
+    echo "<td>$" .htmlspecialchars($row['prod_price']) ."</td>";
+    echo "<td>"  .htmlspecialchars($row['prod_descript']) ."</td>";
+    echo "</tr>";
+}
+			}
+			
+
+ ?>
+
+</tbody>
+</table>
+</div>

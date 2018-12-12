@@ -1,0 +1,62 @@
+<?php
+/**
+ * Trevor Kamin
+ * CIS 222 Project 1
+ *
+ * This website was used as my PHP w/ MYSQL course with professor Banks. It will
+ *be used in a production for Fancie That Candles. This is a complete online
+ * store, and will be fully functional when completed.
+ *
+ * PHP version 5.4.45
+ *
+ * @package    Fancie That Candles
+ * @author     Trevor Kamin
+ * @copyright  2018 Fancie That Candles
+ * @version    12/09/2018
+ * @link       https://cislinux.hfcc.edu/~tkamin/project2/index.php
+ */
+
+// Signup response and insert tinto the database! 
+
+    $FirstName = substr(filter_input(INPUT_POST,'firstname',FILTER_DEFAULT),0,20);
+	$LastName = substr(filter_input(INPUT_POST,'lastname',FILTER_DEFAULT),0,20);
+	 $Password = substr(filter_input(INPUT_POST,'password',FILTER_DEFAULT),0,25);
+	 $Email = substr(filter_input(INPUT_POST,'email',FILTER_DEFAULT),0,25);
+	 $Address = substr(filter_input(INPUT_POST,'addy',FILTER_DEFAULT),0,25);
+	 $City = substr(filter_input(INPUT_POST,'city',FILTER_DEFAULT),0,10);
+	 $Zip = substr(filter_input(INPUT_POST,'zip',FILTER_DEFAULT),0,10);
+	 $State = substr(filter_input(INPUT_POST,'State',FILTER_DEFAULT),0,3);
+
+	  require ('../../creds.php');
+	  require ('../../creds2.php');
+
+	  $dsn = "mysql:host=".DB_HOST.";dbname=".DB_NAME.";charset=$charset";
+$opt =
+    [
+        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+        PDO::ATTR_EMULATE_PREPARES => false,
+    ];
+
+
+$pdo = new PDO($dsn, DB_USER, DB_PASS, $opt) or die ("unable to select database");
+
+
+$query1="INSERT INTO  `users` (
+`user_id` ,
+`first_name` ,
+`last_name` ,
+`email` ,
+`password` ,
+`address` ,
+`city` ,
+`state_name` ,
+`zip`
+)
+VALUES
+( NULL ,  '$FirstName',  '$LastName',  '$Email',  SHA1('$Password'), '$Address','$City','$State', '$Zip')";
+
+						//	header('Location: index.php?page=login');
+		  
+   
+   ?>

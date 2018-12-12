@@ -1,0 +1,72 @@
+<?php
+/**
+ * Trevor Kamin
+ * CIS 222 Project 1
+ *
+ * This website was used as my PHP w/ MYSQL course with professor Banks. It will
+ *be used in a production for Fancie That Candles. This is a complete online
+ * store, and will be fully functional when completed.
+ *
+ * PHP version 5.4.45
+ *
+ * @package    Fancie That Candles
+ * @author     Trevor Kamin
+ * @copyright  2018 Fancie That Candles
+ * @version    12/09/2018
+ * @link       https://cislinux.hfcc.edu/~tkamin/project2/index.php
+ */
+
+
+?>
+
+<!-- Products page that displays with mysql -->
+
+<h1>All Products </h1>
+ <style> td,th {border:1px solid black;} 
+ table {text-align:center;
+ position:relative;
+ left:25em;
+	border:1px solid black;} 
+	</style>
+ <div>
+ <table>
+ <thead>
+<?php
+/*
+require ('../../creds.php');
+require ('../../creds2.php');
+
+$dsn = "mysql:host=".DB_HOST.";dbname=".DB_NAME.";charset=$charset";
+$opt =
+    [
+        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+        PDO::ATTR_EMULATE_PREPARES => false,
+    ];
+
+$pdo = new PDO($dsn, DB_USER, DB_PASS, $opt);
+*/
+							      echo "
+								  <th>Product ID </th>
+                                <th>Images</th>
+                                 <th> Product Name </th>
+                                 <th> Product Price </th>
+								 </thead><tbody>";
+
+$qry = 'SELECT * FROM products';
+$stmt = $pdo->query( $qry );
+while ($row = $stmt->fetch()){
+
+	      $_SESSION['productPage_id']= $row['prod_id'];
+	echo '<tr>';
+	echo "<td><a href=\"index.php?details=".($row['prod_id']). "\">" .($row['prod_id']). "</a></td>";
+	echo '<td ><img src = "'.$row['link'].'" /></td>'; //echo "<td>"  .($row['link'])."</td>";
+	echo "<td>"  .htmlspecialchars($row['prod_name']) ."</td>";
+echo "<td>$" .htmlspecialchars($row['prod_price']) ."</td>";
+echo "</tr>";
+}
+
+?>
+</tbody>
+</table>
+</div>

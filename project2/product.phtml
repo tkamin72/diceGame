@@ -1,0 +1,30 @@
+
+<?php
+$getProd = "SELECT * FROM products WHERE prod_id = ".$_SESSION['productPage_id'];
+$ff="Gjkhjhjghjkggjk";
+$prod = $pdo->query($getProd);
+
+while ($info = $prod->fetch(PDO::FETCH_NUM)){
+echo "<div align='center'>";
+    echo "<h1>". $info[4]."</h1>";
+    echo "<hr>";
+    echo "<img align='center' src='".$info[5]."' class=\"responsive\" width=\"500\" height=\"500\"/>";
+    echo "<br><br><br><br>Price: $". $info[3];
+    echo "<br>Description : ". $info[2];
+    echo "<br>";
+    echo "<button class=\"button5\" onclick=\"goBack()\">
+        <a ><i class=\"fa fa-arrow-circle-o-left\" style=\"font-size:16px\"></i> Back</a></button><br>";
+
+
+}
+?>
+
+<button class="button5" >
+    <a ><i class="fa fa-cart" style="font-size:16px"></i> Add to cart </a></button>
+<script>
+    function goBack() {
+        window.history.back();
+    }
+</script>
+
+

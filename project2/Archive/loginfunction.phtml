@@ -1,0 +1,66 @@
+<?php
+/**
+ * Trevor Kamin
+ * CIS 222 Project 1
+ *
+ * This website was used as my PHP w/ MYSQL course with professor Banks. It will
+ *be used in a production for Fancie That Candles. This is a complete online
+ * store, and will be fully functional when completed.
+ *
+ * PHP version 5.4.45
+ *
+ * @package    Fancie That Candles
+ * @author     Trevor Kamin
+ * @copyright  2018 Fancie That Candles
+ * @version    12/09/2018
+ * @link       https://cislinux.hfcc.edu/~tkamin/project2/index.php
+ */
+
+ //login functions and 
+//Function to redirect 
+function redirect_user ($page = 'index.php') {
+	$url = 'https://' .$_SERVER['HTTP_HOST'] . dirname($_SERVER['PHP_SELF']);
+	$url = rtrim($url, '/\\');
+	$url .= '/' . $page;
+	
+	header("Location: $url");
+	exit();
+  }
+	 $pass = substr(filter_input(INPUT_POST,'pass',FILTER_DEFAULT),0,25);
+	 $email = substr(filter_input(INPUT_POST,'email',FILTER_DEFAULT),0,25);
+  function check_login($dbc,$email = '',$pass = '') {
+	  $errors = array();
+	  
+	  if (empty($email)) {
+		  $errors[] = 'Your forgot to enter your email address.';
+	  }
+	 else {
+	  $e = $email;
+	  }
+	  if (empty($pass)) {
+		  $errors[] = 'Your forgot to enter your password.';
+	  }
+	  else {
+		  $p = $pass;
+	  }
+	  if (empty($errors)) {
+		  
+                   
+                       $q = "Select user_id,first_name,priv FROM users where email = '$e' AND password=SHA1('$p')";
+                       $r = @mysqli_query ($dbc, $q);
+					   if (mysqli_num_rows($r) == 1) {
+						   $row = mysqli_fetch_array($r,MYSQLI_ASSOC);
+								return array(true,$row);
+					   }
+					   else {
+						   $errors[] = 'The email does not match anything';
+					   }
+				}
+					   return array (false, $errors);
+  }
+					  
+					  
+					  
+					  
+	  
+	  

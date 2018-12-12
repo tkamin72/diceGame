@@ -1,0 +1,31 @@
+<?php
+/**
+ * Trevor Kamin
+ * CIS 222 Project 1
+ *
+ * This website was used as my PHP w/ MYSQL course with professor Banks. It will
+ *be used in a production for Fancie That Candles. This is a complete online
+ * store, and will be fully functional when completed.
+ *
+ * PHP version 5.4.45
+ *
+ * @package    Fancie That Candles
+ * @author     Trevor Kamin
+ * @copyright  2018 Fancie That Candles
+ * @version    12/09/2018
+ * @link       https://cislinux.hfcc.edu/~tkamin/project2/index.php
+ */
+
+// login status
+if (!isset($_COOKIE['user_id'])) {
+	require ('loginfunction.phtml');
+	 redirect_user();
+}
+else {
+$page_title = 'Logged in';
+
+echo "<h1> Logged in!</h1> 
+<p> You are now logged in, {$_COOKIE['first_name']}!</p>
+<p><a href=\"index.php?page=loggedout\">Logout</a></p>";
+}
+?>
